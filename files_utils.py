@@ -45,7 +45,7 @@ def append_txt(data, file_path, encoding: str = "utf-8"):
         f.write(data)
 
 # Функция для работы с YAML
-def read_yaml(file_path):
-    with open(file_path, 'r') as f:
+def read_yaml(file_path, encoding: str = "utf-8"):
+    with open(file_path, 'r', encoding=encoding) as f:
         content = yaml.safe_load(f)
         return content
