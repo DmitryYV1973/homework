@@ -1,3 +1,4 @@
+import csv
 import yaml
 
 # Функция для чтения файла в формате JSON
@@ -19,13 +20,13 @@ def append_json(data: list[dict], file_path: str, encoding: str = "utf-8"):
 # Функции для работы с CSV
 def write_csv(data, file_path, delimiter=';', encoding: str ='windows-1251'):
     with open(file_path, 'w', encoding=encoding) as f:
-        writer = f.writer(f, delimiter=delimiter)
+        writer = csv.writer(f, delimiter=delimiter)
         writer.writerows(data)
 
 
 def append_csv(data, file_path, delimiter=';', encoding: str ='windows-1251'):
     with open(file_path, 'a', encoding=encoding) as f:
-        writer = f.writer(f, delimiter=delimiter)
+        writer = csv.writer(f, delimiter=delimiter)
         writer.writerows(data)
 
 # Функции для работы с TXT
