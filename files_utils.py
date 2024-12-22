@@ -1,21 +1,40 @@
 import csv
+import json
+from json import JSONDecodeError
 import yaml
 
-# Функция для чтения файла в формате JSON
 def read_json(file_path: str, encoding: str = "utf-8"):
     with open(file_path, "r", encoding=encoding) as f:
-        json_content = f.read()
-        return json_content
-    
-# Функция для записи данных в файл в формате JSON
+        return json.load(f)
+
 def write_json(data, file_path: str, encoding: str = "utf-8"):
     with open(file_path, "w", encoding=encoding) as f:
-        f.write(data)
-
-# Функция добавления данных в файл в формате JSON
-def append_json(data: list[dict], file_path: str, encoding: str = "utf-8"):
-    with open(file_path, "a", encoding=encoding) as f:
-        f.write(data)
+        json.dump(data, f, ensure_ascii=False, indent=4)
+    try:
+        # Сначала читаем существующие данные
+        existing_data = []
+        try:
+            with open(file_path, "r", encoding=encoding) as f:
+                existing_data = json.load(f)
+        except FileNotFoundError:
+            pass
+        
+        # Если существующие данные не список, создаем новый список
+        if not isinstance(existing_data, list):
+            existing_data = []
+            
+        # Добавляем новые данные
+        if isinstance(data, list):
+            existing_data.extend(data)
+        else:
+            existing_data.append(data)
+            
+        # Записываем обновленные данные
+        with open(file_path, "w", encoding=encoding) as f:
+            json.dump(existing_data, f, ensure_ascii=False, indent=4)
+            
+    except (JSONDecodeError, FileNotFoundError, PermissionError) as e:
+        print(f"Ошибка при добавлении данных: {e}")
 
 # Функции для работы с CSV
 def write_csv(data, file_path, delimiter=';', encoding: str ='windows-1251'):
