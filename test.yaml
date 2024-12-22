@@ -1,0 +1,5 @@
+
+weather:
+    - city: "Москва"
+    - temperature: 15
+    - condition: "облачно"
