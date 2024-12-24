@@ -23,7 +23,8 @@ def main(page: ft.Page):
             feels_like = res['main']['feels_like']
             humidity = res['main']['humidity']
             wind = res['wind']['speed']
-            weather_data.value = f'Температура: {str(temp)}°C\nОщущается как: {str(feels_like)}°C\nВлажность: {str(humidity)}%\nСкорость ветра: {str(wind)} м/с'
+            weather_data.value = (f'Температура: {str(temp)}°C\nОщущается как: {str(feels_like)}°C\nВлажность:'
+                                  f' {str(humidity)}%\nСкорость ветра: {str(wind)} м/с')
         except:
             weather_data.value = "Ошибка получения данных"
         page.update()
@@ -35,6 +36,9 @@ def main(page: ft.Page):
         page.update()
 
 # Создание интерфейса
+    page.window_width = 600
+    page.window_height = 400
+    page.window_maximizable = False
     page.add(
         ft.Row(
             [
