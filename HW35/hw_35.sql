@@ -20,3 +20,11 @@ LIMIT 1027;
 SELECT name, HAIR
 FROM MarvelCharacters
 WHERE HAIR = 'Variable Hair';
+
+
+-- 4. Женские персонажи с редким цветом глаз
+SELECT name, eye
+FROM MarvelCharacters
+WHERE SEX = 'Female Characters' 
+    AND (eye = 'Gold Eyes' OR eye = 'Amber Eyes')
+ORDER BY eye;
