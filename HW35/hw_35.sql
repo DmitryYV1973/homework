@@ -1,19 +1,17 @@
 -- 1. Лысые злодеи 90-х годов
-SELECT name, FIRST_APPEARANCE, appearances
+SELECT name, Year, appearances
 FROM MarvelCharacters
-WHERE year BETWEEN 1990 AND 1999 
-    AND HAIR = 'bald'
-    OR ALIGN = 'Bad Characters'
-LIMIT 94;
+WHERE HAIR = 'Bald' AND ALIGN = 'Bad Characters'
+    AND Year BETWEEN 1990 AND 1999;
+
 
 
 -- Герои с тайной идентичностью и необычными глазами
 SELECT name, FIRST_APPEARANCE, eye
 FROM MarvelCharacters
-WHERE identify IS NOT NULL
-    AND eye NOT IN ('blue', 'brown', 'green')
-    AND FIRST_APPEARANCE IS NOT NULL
-LIMIT 1027;
+WHERE identify = 'Secret Identity'
+    AND eye NOT IN ('Blue Eyes', 'Brown Eyes', 'Green Eyes')
+    AND FIRST_APPEARANCE IS NOT NULL;
 
 
 -- 3. Персонажи с изменяющимся цветом волос
@@ -28,3 +26,10 @@ FROM MarvelCharacters
 WHERE SEX = 'Female Characters' 
     AND (eye = 'Gold Eyes' OR eye = 'Amber Eyes')
 ORDER BY eye;
+
+
+-- 5. Персонажи без двойной идентичности, сортированные по году появления
+SELECT name, FIRST_APPEARANCE
+FROM MarvelCharacters
+WHERE identify = 'No Dual Identity'
+ORDER BY Year DESC;
