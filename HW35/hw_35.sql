@@ -40,3 +40,9 @@ SELECT name, ALIGN, HAIR
 FROM MarvelCharacters
 WHERE HAIR NOT IN ('Brown Hair', 'Black Hair', 'Blond Hair', 'Red Hair')
     AND ALIGN IN ('Good Characters', 'Bad Characters');
+
+
+-- 7. Персонажи, появившиеся в определённое десятилетие
+SELECT name, YEAR
+FROM MarvelCharacters
+WHERE YEAR BETWEEN 1960 AND 1969;
