@@ -70,3 +70,17 @@ class TxtFileHandler:
             print(f"Нет доступа к файлу '{filepath}'.")
         except Exception as e:
             print(f"Произошла ошибка при добавлении в файл '{filepath}': {e}")
+    
+
+if __name__ == "__main__":
+    handler = TxtFileHandler()
+
+    # Запись в файл
+    handler.write_file("my_file.txt", "All real men from February 23rd!\n")
+
+    # Добавление в файл
+    handler.append_file("my_file.txt", "Guys, don't forget, March 8th is coming soon!\n")
+
+    # Чтение из файла
+    content = handler.read_file("my_file.txt")
+    print(content)
