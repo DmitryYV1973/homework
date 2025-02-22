@@ -49,3 +49,24 @@ class TxtFileHandler:
             print(f"Нет доступа к файлу '{filepath}'.")
         except Exception as e:
             print(f"Произошла ошибка при записи в файл '{filepath}': {e}")
+    
+    def append_file(self, filepath: str, *data: str) -> None:
+        """
+        Добавляет переданные строки в конец файла.
+        Если файл не существует, он будет создан.
+
+        Args:
+            filepath (str): Путь к файлу для добавления данных.
+            *data (str): Строки для добавления в файл.
+
+        Returns:
+            None
+            """
+        try:
+            with open(filepath, 'a') as file:
+                for line in data:
+                    file.write(line)
+        except PermissionError:
+            print(f"Нет доступа к файлу '{filepath}'.")
+        except Exception as e:
+            print(f"Произошла ошибка при добавлении в файл '{filepath}': {e}")
