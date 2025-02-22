@@ -58,3 +58,10 @@ WHERE EYE = 'Yellow Eyes' AND HAIR = 'Red Hair';
 SELECT name, appearances
 FROM MarvelCharacters
 WHERE appearances < 10;
+
+
+-- 10. Персонажи с наибольшим количеством появлений
+SELECT name, appearances
+FROM MarvelCharacters
+ORDER BY appearances DESC
+LIMIT 5;
