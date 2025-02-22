@@ -52,3 +52,9 @@ WHERE YEAR BETWEEN 1960 AND 1969;
 SELECT name, eye, HAIR
 FROM MarvelCharacters
 WHERE EYE = 'Yellow Eyes' AND HAIR = 'Red Hair';
+
+
+-- 9. Персонажи с ограниченным количеством появлений
+SELECT name, appearances
+FROM MarvelCharacters
+WHERE appearances < 10;
