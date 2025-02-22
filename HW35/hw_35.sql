@@ -33,3 +33,10 @@ SELECT name, FIRST_APPEARANCE
 FROM MarvelCharacters
 WHERE identify = 'No Dual Identity'
 ORDER BY Year DESC;
+
+
+-- 6. Герои и злодеи с необычными прическами
+SELECT name, ALIGN, HAIR
+FROM MarvelCharacters
+WHERE HAIR NOT IN ('Brown Hair', 'Black Hair', 'Blond Hair', 'Red Hair')
+    AND ALIGN IN ('Good Characters', 'Bad Characters');
