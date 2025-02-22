@@ -14,3 +14,9 @@ WHERE identify IS NOT NULL
     AND eye NOT IN ('blue', 'brown', 'green')
     AND FIRST_APPEARANCE IS NOT NULL
 LIMIT 1027;
+
+
+-- 3. Персонажи с изменяющимся цветом волос
+SELECT name, HAIR
+FROM MarvelCharacters
+WHERE HAIR = 'Variable Hair';
