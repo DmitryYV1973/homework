@@ -126,3 +126,49 @@ class CityGame:
 
     def check_game_over(self) -> bool:
         return all(city.is_used for city in self.cities)
+    
+class GameManager:
+    """
+    Класс управления игровым процессом.
+    
+    Организует взаимодействие между компонентами игры,
+    обрабатывает пользовательский ввод и управляет игровым циклом.
+    
+    Attributes:
+        json_file (JsonFile): Объект для работы с JSON
+        cities_serializer (CitiesSerializer): Сериализатор городов
+        city_game (CityGame): Объект игровой логики
+    """
+    def __init__(self, json_file: JsonFile, cities_serializer: CitiesSerializer, city_game: CityGame):
+        self.json_file = json_file
+        self.cities_serializer = cities_serializer
+        self.city_game = city_game
+
+    def __call__(self):
+        self.run_game()
+
+    def run_game(self):
+        print("Добро пожаловать в игру 'Города'!")
+        print("Введите 'выход', чтобы завершить игру.")
+        print()
+        print(self.city_game.start_game())
+
+        while not self.city_game.check_game_over():
+            city_input = input("\nВведите название города: ")
+            if city_input.lower() == 'выход':
+                break
+                
+            result = self.city_game.human_turn(city_input)
+            print(result)
+            
+            if "победили" in result:
+                break
+
+        print("\nИгра завершена!")
+
+if __name__ == "__main__":
+    json_file = JsonFile("cities.json")
+    cities_serializer = CitiesSerializer(json_file.read_data())
+    city_game = CityGame(cities_serializer)
+    game_manager = GameManager(json_file, cities_serializer, city_game)
+    game_manager()
