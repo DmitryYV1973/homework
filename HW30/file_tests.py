@@ -29,3 +29,16 @@ def test_text_file():
     # Тестируем добавление
     txt_file.append('Hello, Python!')
     print('TXT после добавленеия:', txt_file.read())
+
+
+# Функция для создания тестового файла CSV
+def test_csv_file():
+    csv_file = CSVFile('test.csv')
+
+    # Тестируем записи
+    csv_file.write([['name', 'age'], ['Андрей', '25'], ['Мария', '30']])
+    print('CSV запись:', csv_file.read())
+
+    # Тестируем добавление
+    csv_file.append(['Иван', '20'])
+    print('CSV после добавления:', csv_file.read())
