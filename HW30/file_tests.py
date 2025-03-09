@@ -9,13 +9,14 @@ from file_classes import JSONFile, TextFile, CSVFile
 def test_json_file():
     json_file = JSONFile('test.json')
 
-    # Тестируем записи
-    json_file.write({'name': 'Андрей', 'age': 25})
-    print('JSON запись:', json_file.read())
+    # Записываем начальные данные
+    json_file.write([{'name': 'Андрей', 'age': 25}])
 
-    # Тестируем добавление
+    # Добавляем новую запись
     json_file.append({'name': 'Мария', 'age': 30})
-    print('JSON после добавленеия:', json_file.read())
+
+    # Читаем данные
+    print(json_file.read())
 
 
 # Функция для создания тестового файла TXT
@@ -27,7 +28,7 @@ def test_text_file():
     print('TXT запись:', txt_file.read())
 
     # Тестируем добавление
-    txt_file.append('Hello, Python!')
+    txt_file.append('\nHello, Python!')
     print('TXT после добавленеия:', txt_file.read())
 
 
@@ -42,3 +43,16 @@ def test_csv_file():
     # Тестируем добавление
     csv_file.append(['Иван', '20'])
     print('CSV после добавления:', csv_file.read())
+
+if __name__ == '__main__':
+    # Удаляем тестовые файлы, если они уже существуют
+    for file in ['test.json', 'test.txt', 'test.csv']:
+        if os.path.exists(file):
+            os.remove(file)
+    # Вызываем тестовые функции
+    print('Тестирование JSON файла:')
+    test_json_file()
+    print('\nТестирование TXT файла:')
+    test_text_file()
+    print('\nТестирование CSV файла:')
+    test_csv_file()
