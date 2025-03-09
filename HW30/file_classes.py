@@ -37,3 +37,20 @@ class AbstractFile(abc.ABC):
             current_data.append(data)
             self.write(current_data)
 
+
+class TextFile(AbstractFile):
+    '''Класс для работы с файлами в формате TXT'''
+    def __init__(self, file_path) -> None:
+        self.file_path = file_path
+
+    def read(self) -> str:
+        with open(self.file_path, r) as file:
+            return file.read()
+        
+    def write(self, data) -> None:
+        with open(self.file_path, w) as file:
+            file.write(data)
+
+    def append(self, data) -> None:
+        with open(self.file_path, a) as file:
+            file.write(data)
