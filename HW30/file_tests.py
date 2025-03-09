@@ -18,3 +18,14 @@ def test_json_file():
     print('JSON после добавленеия:', json_file.read())
 
 
+# Функция для создания тестового файла TXT
+def test_text_file():
+    txt_file = TextFile('test.txt')
+
+    # Тестируем записи
+    txt_file.write('Hello, world!')
+    print('TXT запись:', txt_file.read())
+
+    # Тестируем добавление
+    txt_file.append('Hello, Python!')
+    print('TXT после добавленеия:', txt_file.read())
